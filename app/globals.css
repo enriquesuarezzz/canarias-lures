@@ -10,7 +10,7 @@
   --card-foreground: oklch(0.2 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0 0);
-  --primary: oklch(0.3 0.05 240);
+  --primary: oklch(0.35 0.08 250);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.96 0.005 240);
   --secondary-foreground: oklch(0.2 0 0);
@@ -22,8 +22,8 @@
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.92 0.005 240);
   --input: oklch(0.92 0.005 240);
-  --ring: oklch(0.3 0.05 240);
-  --chart-1: oklch(0.3 0.05 240);
+  --ring: oklch(0.35 0.08 250);
+  --chart-1: oklch(0.35 0.08 250);
   --chart-2: oklch(0.4 0.05 240);
   --chart-3: oklch(0.5 0.05 240);
   --chart-4: oklch(0.35 0.05 240);
@@ -46,7 +46,7 @@
   --card-foreground: oklch(0.95 0.005 240);
   --popover: oklch(0.15 0.01 240);
   --popover-foreground: oklch(0.95 0.005 240);
-  --primary: oklch(0.4 0.05 240);
+  --primary: oklch(0.45 0.08 250);
   --primary-foreground: oklch(0.12 0.01 240);
   --secondary: oklch(0.25 0.01 240);
   --secondary-foreground: oklch(0.95 0.005 240);
@@ -58,7 +58,7 @@
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.25 0.01 240);
   --input: oklch(0.25 0.01 240);
-  --ring: oklch(0.4 0.05 240);
+  --ring: oklch(0.45 0.08 250);
   --chart-1: oklch(0.488 0.1 264.376);
   --chart-2: oklch(0.5 0.08 240);
   --chart-3: oklch(0.55 0.08 240);
@@ -66,7 +66,7 @@
   --chart-5: oklch(0.6 0.08 240);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.3 0.05 240);
+  --sidebar-primary: oklch(0.35 0.08 250);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -75,9 +75,9 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: "Inter", "Inter Fallback", sans-serif;
+  --font-serif: "Playfair Display", "Playfair Display Fallback", serif;
+  --font-mono: "Playfair Display", "Playfair Display Fallback", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -122,5 +122,14 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
   }
 }

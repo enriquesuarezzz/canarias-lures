@@ -1,23 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import "./globals.css"
-import { CartProvider } from "@/components/cart-provider"
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-})
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
+const _inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Canarias Lures - Señuelos de Pesca Premium",
-  description: "Las mejores muestras y señuelos de pesca profesional. Colección exclusiva de Canarias Lures.",
+  title: "Canarias Lures",
+  description: "Premium fishing lures and equipment",
   generator: "v0.app",
 }
 
@@ -27,9 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
-        <CartProvider>{children}</CartProvider>
+    <html lang="en">
+      <body className={`font-sans antialiased ${_inter.className}`}>
+        <Header />
+        {children}
+        <Footer />
         <Analytics />
       </body>
     </html>

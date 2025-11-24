@@ -1,16 +1,27 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X, ShoppingCart } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { useCart } from '@/components/cart-provider'
+import type React from "react"
+
+import { useState } from "react"
+import Link from "next/link"
+import { Menu, X, ShoppingCart } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useCart } from "@/components/cart-provider"
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { openCart, cartItems } = useCart()
 
   const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
+
+  const handleProductsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    setIsMenuOpen(false)
+    const productosSection = document.getElementById("productos")
+    if (productosSection) {
+      productosSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -21,25 +32,20 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-foreground hover:text-primary transition-colors"
-            >
+            <Link href="/" className="text-foreground hover:text-primary transition-colors">
               Inicio
             </Link>
-            <Link
-              href="/#productos"
-              className="text-foreground hover:text-primary transition-colors"
+            <a
+              href="#productos"
+              onClick={handleProductsClick}
+              className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               Productos
-            </Link>
-            <Link
-              href="/contacto"
-              className="text-foreground hover:text-primary transition-colors"
-            >
+            </a>
+            <Link href="/contacto" className="text-foreground hover:text-primary transition-colors">
               Contacto
             </Link>
-            
+
             {/* Cart Icon */}
             <button
               onClick={openCart}
@@ -78,11 +84,7 @@ export function Navbar() {
               className="relative w-10 h-10"
               aria-label="Menú"
             >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
         </div>
@@ -95,7 +97,7 @@ export function Navbar() {
             className="md:hidden fixed inset-0 top-16 bg-black/60 backdrop-blur-md z-40"
             onClick={() => setIsMenuOpen(false)}
           />
-          
+
           {/* Menu content */}
           <div className="md:hidden fixed inset-x-0 top-16 bg-background z-50 border-b border-border shadow-lg">
             <div className="container mx-auto px-4 py-6">
@@ -107,13 +109,13 @@ export function Navbar() {
                 >
                   Inicio
                 </Link>
-                <Link
-                  href="/#productos"
-                  className="text-xl font-medium hover:text-primary transition-colors py-3 px-4 hover:bg-secondary rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
+                <a
+                  href="#productos"
+                  onClick={handleProductsClick}
+                  className="text-xl font-medium hover:text-primary transition-colors py-3 px-4 hover:bg-secondary rounded-lg cursor-pointer"
                 >
                   Productos
-                </Link>
+                </a>
                 <Link
                   href="/contacto"
                   className="text-xl font-medium hover:text-primary transition-colors py-3 px-4 hover:bg-secondary rounded-lg"
